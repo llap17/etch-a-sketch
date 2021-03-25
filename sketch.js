@@ -94,8 +94,8 @@ btnNew.addEventListener('click', function(){
     if (size === null) {
         return;
     }
-        while(size > 64 || size < 1){
-            alert("The maximum is 64 and the minimum is 1!");
+        while(size > 64 || size < 2){
+            alert("The maximum is 64 and the minimum is 2!");
             size = prompt("How many rows should the new sketch have? (max limit 64)");
         }
     document.documentElement.style.setProperty('--grid-cols', size);
