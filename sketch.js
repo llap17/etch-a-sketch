@@ -32,17 +32,16 @@ function newColor(item) {
     let currentColor = item.style.backgroundColor
         .split("(")[1].split(")")[0];
     currentColor = currentColor.split(",");
-    let currentColorB = currentColor.map(function (x) {
+    currentColor = currentColor.map(function (x) {
         x = parseInt(x).toString(16);
         return (x.length == 1) ? "0" + x : x;
     });
-    currentColorB = "#" + currentColorB.join("");
-    return currentColorB;
+    currentColor = "#" + currentColor.join("");
+    return currentColor;
 }
 
 //COLORING BOXES FUNCTION
 function coloring() {
-
     const gridItems = document.querySelectorAll(".grid-item");
     gridItems.forEach(item => item.style.backgroundColor = sketchColor);
     gridItems.forEach(item => item.addEventListener("mouseover", function () { 
@@ -52,11 +51,11 @@ function coloring() {
             item.style.backgroundColor 
             = '#'+Math.floor(Math.random()*16777215).toString(16);
         } else if (colorSwitch == 3) {
-            let currentColorB = newColor(item);
-                item.style.backgroundColor = shadeColor(currentColorB, -10);
+            let currentColor = newColor(item);
+                item.style.backgroundColor = shadeColor(currentColor, -10);
         } else if (colorSwitch == 4) {
-            let currentColorB = newColor(item);
-                item.style.backgroundColor = shadeColor(currentColorB, 10);
+            let currentColor = newColor(item);
+                item.style.backgroundColor = shadeColor(currentColor, 10);
         }
     }));
 }
