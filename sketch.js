@@ -27,6 +27,19 @@ function shadeColor(color, percent) {
     return "#"+RR+GG+BB;
 }
 
+//COLOR CONVERSION FUNCTION
+function newColor(item) {
+    let currentColor = item.style.backgroundColor
+        .split("(")[1].split(")")[0];
+    currentColor = currentColor.split(",");
+    let currentColorB = currentColor.map(function (x) {
+        x = parseInt(x).toString(16);
+        return (x.length == 1) ? "0" + x : x;
+    });
+    currentColorB = "#" + currentColorB.join("");
+    return currentColorB;
+}
+
 //COLORING BOXES FUNCTION
 function coloring() {
 
@@ -48,19 +61,6 @@ function coloring() {
     }));
 }
 
-//COLOR CONVERSION FUNCTION
-function newColor(item) {
-    let currentColor = item.style.backgroundColor
-        .split("(")[1].split(")")[0];
-    currentColor = currentColor.split(",");
-    let currentColorB = currentColor.map(function (x) {
-        x = parseInt(x).toString(16);
-        return (x.length == 1) ? "0" + x : x;
-    });
-    currentColorB = "#" + currentColorB.join("");
-    return currentColorB;
-}
-
 //GENERATE SKETCH
 function generate() {
     let a = size*=size;
@@ -73,12 +73,12 @@ function generate() {
     coloring();
 }
 
-//DELETE SKETCH
+//DELETE SKETCH FUNCTION
 function clear() {
     document.querySelectorAll(".grid-item").forEach(el => el.remove());
 }
 
-//MAKE NEW SKETCH
+//MAKE NEW SKETCH FUNCTION
 function newSketch () {
     clear();
     generate();
@@ -91,12 +91,16 @@ generate();
 let btnNew = document.getElementById("btn-new");
 btnNew.addEventListener('click', function(){
     size = prompt("How many rows should the new sketch have? (max limit 64)", "16");
+    if (size === null) {
+        return;
+    }
         while(size > 64 || size < 1){
             alert("The maximum is 64 and the minimum is 1!");
             size = prompt("How many rows should the new sketch have? (max limit 64)");
         }
     document.documentElement.style.setProperty('--grid-cols', size);
     document.documentElement.style.setProperty('--grid-rows', size);
+    document.getElementById("size-para").innerHTML = "SIZE: " + size + "x" + size;
     newSketch();
 });
 
