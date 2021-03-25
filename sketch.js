@@ -44,21 +44,24 @@ function newColor(item) {
 function coloring() {
     const gridItems = document.querySelectorAll(".grid-item");
     gridItems.forEach(item => item.style.backgroundColor = sketchColor);
-    gridItems.forEach(item => item.addEventListener("mouseover", function () { 
-        if (colorSwitch == 1) {
+    gridItems.forEach(item => item.addEventListener("mouseover", function (e) { 
+        if (e.which == 1 && colorSwitch == 1) {
             item.style.backgroundColor = greyColor;
-        } else if (colorSwitch == 2) {
+        } else if (e.which == 1 && colorSwitch == 2) {
             item.style.backgroundColor 
             = '#'+Math.floor(Math.random()*16777215).toString(16);
-        } else if (colorSwitch == 3) {
+        } else if (e.which == 1 && colorSwitch == 3) {
             let currentColor = newColor(item);
                 item.style.backgroundColor = shadeColor(currentColor, -10);
-        } else if (colorSwitch == 4) {
+        } else if (e.which == 1 && colorSwitch == 4) {
             let currentColor = newColor(item);
                 item.style.backgroundColor = shadeColor(currentColor, 10);
         }
     }));
 }
+
+//DRAWING FUNCTION
+
 
 //GENERATE SKETCH
 function generate() {

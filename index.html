@@ -5,25 +5,31 @@
 <head>
     <title>Etch-a-Sketch</title>
     <link rel="stylesheet" href="style.css">
-    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,600;1,900&display=swap');
+        </style>
 </head>
 
-<body>
-    <div id="container">
-        <div id="menu">
-            <div id="btns">
-                <button id="btn-new" class="btn">New</button>
-                <button id="btn-color" class="btn">Switch Coloring Mode</button>
+<body ondragstart="return false;" ondrop="return false;">
+    <div id="page">
+        <h1 id="h1">Etch-a-Sketch Simulator 2021</h1>
+        <div id="container">
+
+            <div id="menu">
+                <div id="btns">
+                    <button id="btn-new" class="btn">New</button>
+                    <button id="btn-color" class="btn">Switch Coloring Mode</button>
+                </div>
+
+                <p id="mode-para" class="menu-para">MODE: Grey</p>
+                <p id="size-para" class="menu-para">SIZE: 16x16</p>
             </div>
 
-            <p id="mode-para" class="menu-para">MODE: Grey</p>
-            <p id="size-para" class="menu-para">SIZE: 16x16</p>
-        </div>
+            <div id="grid-container">
 
-        <div id="grid-container">
+            </div>
 
         </div>
-
     </div>
     <script type="text/javascript" src="sketch.js"></script>
 </body>
