@@ -1,5 +1,4 @@
 //ROOT
-var menu = document.getElementById("menu");
 var gridContainer = document.getElementById("grid-container");
 let size = 16;
 let colorSwitch = 1;
@@ -34,25 +33,17 @@ function coloring() {
     const gridItems = document.querySelectorAll(".grid-item");
     gridItems.forEach(item => item.style.backgroundColor = sketchColor);
     gridItems.forEach(item => item.addEventListener("mouseover", function () { 
-        console.log(item.style.backgroundColor);
         if (colorSwitch == 1) {
             item.style.backgroundColor = greyColor;
-            console.log("test1");
         } else if (colorSwitch == 2) {
             item.style.backgroundColor 
             = '#'+Math.floor(Math.random()*16777215).toString(16);
         } else if (colorSwitch == 3) {
             let currentColorB = newColor(item);
-                console.log(currentColorB + "hello");
-                console.log(item.style.backgroundColor);
                 item.style.backgroundColor = shadeColor(currentColorB, -10);
-                console.log("test2");
         } else if (colorSwitch == 4) {
             let currentColorB = newColor(item);
-                console.log(currentColorB + "hello");
-                console.log(item.style.backgroundColor);
                 item.style.backgroundColor = shadeColor(currentColorB, 10);
-                console.log("test2");
         }
     }));
 }
