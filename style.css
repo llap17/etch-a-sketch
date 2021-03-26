@@ -2,6 +2,12 @@
     background-color: rgb(223, 223, 223);
     --grid-cols: 16;
     --grid-rows: 16;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 *:focus{
