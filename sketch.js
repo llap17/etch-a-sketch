@@ -27,8 +27,8 @@ function shadeColor(color, percent) {
     return "#"+RR+GG+BB;
 }
 
-//COLOR CONVERSION FUNCTION
-function newColor(item) {
+//COLOR CODE CONVERSION FUNCTION
+function hexColor(item) {
     let currentColor = item.style.backgroundColor
         .split("(")[1].split(")")[0];
     currentColor = currentColor.split(",");
@@ -44,24 +44,28 @@ function newColor(item) {
 function coloring() {
     const gridItems = document.querySelectorAll(".grid-item");
     gridItems.forEach(item => item.style.backgroundColor = sketchColor);
-    gridItems.forEach(item => item.addEventListener("mouseover", function (e) { 
+    gridItems.forEach(item => item.addEventListener("mouseover", function(e) { 
+        runColoring(e, item);
+    }));
+    gridItems.forEach(item => item.addEventListener("mousedown", function(e) {
+        runColoring(e, item);
+    }));
+
+    function runColoring(e, item) {
         if (e.which == 1 && colorSwitch == 1) {
             item.style.backgroundColor = greyColor;
         } else if (e.which == 1 && colorSwitch == 2) {
-            item.style.backgroundColor 
-            = '#'+Math.floor(Math.random()*16777215).toString(16);
+            item.style.backgroundColor
+                = '#' + Math.floor(Math.random() * 16777215).toString(16);
         } else if (e.which == 1 && colorSwitch == 3) {
-            let currentColor = newColor(item);
-                item.style.backgroundColor = shadeColor(currentColor, -10);
+            let currentColor = hexColor(item);
+            item.style.backgroundColor = shadeColor(currentColor, -10);
         } else if (e.which == 1 && colorSwitch == 4) {
-            let currentColor = newColor(item);
-                item.style.backgroundColor = shadeColor(currentColor, 10);
+            let currentColor = hexColor(item);
+            item.style.backgroundColor = shadeColor(currentColor, 10);
         }
-    }));
+    }
 }
-
-//DRAWING FUNCTION
-
 
 //GENERATE SKETCH
 function generate() {
@@ -123,5 +127,4 @@ btnColor.addEventListener('click', function(){
         colorSwitch = 1
         document.getElementById("mode-para").innerHTML = "MODE: Grey";
     }
-
 });
